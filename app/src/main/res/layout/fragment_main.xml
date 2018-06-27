@@ -18,12 +18,63 @@
             android:layout_height="120dp" />
 
         <!--user-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Icon-->
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_action_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--Text Field-->
+            <EditText
+                android:hint="User :"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
 
         <!--Password-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Icon-->
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_action_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!--Text Field-->
+            <EditText
+                android:hint="Password :"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
         <!--Login-->
+        <Button
+            android:text="Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <!--Register-->
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/colorAccent"
+            android:text="New Register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
 
