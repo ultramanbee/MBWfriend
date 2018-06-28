@@ -26,11 +26,12 @@
 
         <!--Avatar-->
         <ImageView
+            android:scaleType="centerInside"
             android:id="@+id/imvavatar"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="200dp"
+            android:layout_height="180dp" />
 
         <!--Name-->
         <EditText
