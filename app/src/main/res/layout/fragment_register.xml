@@ -6,6 +6,7 @@
 
     <!--Toolbar-->
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarRegister"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
@@ -25,6 +26,7 @@
 
         <!--Avatar-->
         <ImageView
+            android:id="@+id/imvavatar"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/image"
             android:layout_width="wrap_content"
@@ -32,18 +34,21 @@
 
         <!--Name-->
         <EditText
+            android:id="@+id/edtname"
             android:background="@drawable/display_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <!--User-->
         <EditText
+            android:id="@+id/edtuser"
             android:background="@drawable/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <!--Password-->
         <EditText
+            android:id="@+id/edtpassword"
             android:background="@drawable/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
