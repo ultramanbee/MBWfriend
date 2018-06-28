@@ -4,6 +4,8 @@
 
     <!--Content-->
     <LinearLayout
+        android:background="#82ffffff"
+        android:padding="30dp"
 
         android:orientation="vertical"
         android:layout_margin="50dp"
@@ -70,6 +72,11 @@
 
         <!--Register-->
         <TextView
+            android:id="@+id/txtNewRegister"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:layout_margin="8dp"
+            android:textSize="@dimen/h2"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/colorAccent"
             android:text="New Register"
