@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.office.mbwfriend.MainActivity;
 import com.example.office.mbwfriend.R;
+
+import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 
 public class RegisterFragment extends Fragment{
 
@@ -72,15 +75,50 @@ public class RegisterFragment extends Fragment{
         String passwordString = nameEditText.getText().toString().trim();
 
         if (aBoolean) {
-
             alertMessage("Non Choose Avatar");
-        }else if (){
+        }else if (nameString.isEmpty() || userString.isEmpty() || passwordString.isEmpty()){
+            alertMessage("Plese Fill All Blank");
 
         }else{
 
+//            upload Image Avatar
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
+                    .Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
         }
 
     } //Upload
+
+    public class MyUploadAvatar implements FTPDataTransferListener{
+        @Override
+        public void started() {
+            alertMessage("Start Upload Avatar");
+        }
+
+        @Override
+        public void transferred(int i) {
+            alertMessage("Continue Upload Avatar");
+
+        }
+
+        @Override
+        public void completed() {
+            alertMessage("Success Upload Avatar");
+
+        }
+
+        @Override
+        public void aborted() {
+
+        }
+
+        @Override
+        public void failed() {
+
+        }
+    }
+
+
 
     private void alertMessage(String strMessage) {
 
