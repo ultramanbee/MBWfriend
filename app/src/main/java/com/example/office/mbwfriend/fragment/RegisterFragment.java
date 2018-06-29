@@ -1,15 +1,18 @@
 package com.example.office.mbwfriend.fragment;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,7 +25,13 @@ import android.widget.Toast;
 
 import com.example.office.mbwfriend.MainActivity;
 import com.example.office.mbwfriend.R;
+import com.example.office.mbwfriend.utility.AddUser;
 
+import java.io.File;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import it.sauronsoftware.ftp4j.FTPClient;
 import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 
 public class RegisterFragment extends Fragment{
@@ -85,7 +94,75 @@ public class RegisterFragment extends Fragment{
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
                     .Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-        }
+
+            String[] strings = new String[]{MediaStore.Images.Media.DATA};
+            Cursor cursor = getActivity().getContentResolver()
+                    .query(uri, strings, null, null, null);
+
+            String pathAvataString = null;
+
+            if (cursor != null) {
+
+                cursor.moveToFirst();
+                int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                pathAvataString = cursor.getString(index);
+
+            } else {
+
+                pathAvataString = uri.getPath();
+
+            }
+
+
+            Log.d("29JuneV1", "Path ==> " + pathAvataString);
+
+            File file = new File(pathAvataString);
+            FTPClient ftpClient = new FTPClient();
+
+            try{
+                ftpClient.connect("ftp.androidthai.in.th");
+                ftpClient.login("srru@androidthai.in.th","Abc12345");
+                ftpClient.setType(FTPClient.TYPE_BINARY);
+                ftpClient.changeDirectory("Avata");
+                ftpClient.upload(file, new MyUploadAvatar());
+
+            }catch (Exception e){
+                e.printStackTrace();;
+                try{
+
+                    ftpClient.disconnect(true);
+
+                }catch (Exception e1){
+                    e1.printStackTrace();
+                }
+
+
+            } // try1
+
+//            uploadDatato mysql
+            String nameAvata = pathAvataString.substring(pathAvataString.lastIndexOf("/"));
+            nameAvata = "http://androidthai.in.th/srru/" + nameAvata;
+
+            try {
+
+                AddUser addUser = new AddUser(getActivity());
+                addUser.execute(nameString,userString,passwordString,nameAvata,"http://androidthai.in.th/srru/addData.php");
+
+                if (Boolean.parseBoolean(addUser.get())) {
+                    getActivity().getSupportFragmentManager().popBackStack();
+
+                }else{
+                    alertMessage("Cannot Upload");
+                }
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+
+
+        } // if
 
     } //Upload
 
