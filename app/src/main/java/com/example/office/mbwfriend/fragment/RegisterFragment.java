@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -62,9 +63,21 @@ public class RegisterFragment extends Fragment{
 
     private void uploadValueToServer() {
 
+        EditText nameEditText = getView().findViewById(R.id.edtname);
+        EditText userEditText = getView().findViewById(R.id.edtuser);
+        EditText passwordEditText = getView().findViewById(R.id.edtpassword);
+
+        String nameString = nameEditText.getText().toString().trim();
+        String userString = nameEditText.getText().toString().trim();
+        String passwordString = nameEditText.getText().toString().trim();
+
         if (aBoolean) {
 
             alertMessage("Non Choose Avatar");
+        }else if (){
+
+        }else{
+
         }
 
     } //Upload
